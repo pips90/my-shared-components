@@ -19,6 +19,14 @@ const meta: Meta<typeof App> = {
       </div>
     ),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "The `App` component demonstrates the usage of the `SharedButton` component. It is the main entry point for this example.",
+      },
+    },
+  },
 };
 
 export default meta;
