@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint src .storybook --ext .ts,.tsx && echo \"✔ Lint passed with no issues!\"",
     "test": "jest",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
@@ -15,6 +15,7 @@
   },
   "homepage": "https://<pips90>.github.io/my-shared-components",
   "dependencies": {
+    "@storybook/testing-library": "^0.2.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "styled-components": "^6.1.19"
@@ -26,6 +27,7 @@
     "@storybook/addon-docs": "^10.1.2",
     "@storybook/addon-onboarding": "^10.1.2",
     "@storybook/addon-vitest": "^10.1.2",
+    "@storybook/jest": "^0.2.2",
     "@storybook/react-vite": "^10.1.2",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",

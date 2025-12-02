@@ -3,14 +3,18 @@ import { SmallButton, MediumButton, LargeButton } from "./StyledSharedButton";
 export interface SharedButtonProps {
   buttonText: string;
   size: "small" | "medium" | "large";
-  // onClick: () => void;
+  onClick: () => void;
 }
 
-export const SharedButton = ({ buttonText, size }: SharedButtonProps) => {
+export const SharedButton = ({
+  buttonText,
+  size,
+  onClick,
+}: SharedButtonProps) => {
   if (size === "small") {
-    return <SmallButton>{buttonText}</SmallButton>;
+    return <SmallButton onClick={onClick}>{buttonText}</SmallButton>;
   } else if (size === "medium") {
-    return <MediumButton>{buttonText}</MediumButton>;
+    return <MediumButton onClick={onClick}>{buttonText}</MediumButton>;
   }
-  return <LargeButton>{buttonText}</LargeButton>;
+  return <LargeButton onClick={onClick}>{buttonText}</LargeButton>;
 };

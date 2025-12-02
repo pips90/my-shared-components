@@ -13,11 +13,23 @@ function App() {
       }}
     >
       <h3>Shared Small Button Below</h3>
-      <SharedButton buttonText="Click Me!" size="small" />
+      <SharedButton
+        buttonText="Click Me!"
+        size="small"
+        onClick={() => console.log("Small Button haS Been Clicked!")}
+      />
       <h2>Shared Medium Button Below</h2>
-      <SharedButton buttonText="Click Me!" size="medium" />
+      <SharedButton
+        buttonText="Click Me!"
+        size="medium"
+        onClick={() => console.log("Medium Button haS Been Clicked!")}
+      />
       <h1>Shared Large Button Below</h1>
-      <SharedButton buttonText="Click Me!" size="large" />
+      <SharedButton
+        buttonText="Click Me!"
+        size="large"
+        onClick={() => console.log("Large Button haS Been Clicked!")}
+      />
       <h3>Shared Small Input Below</h3>
       <SharedInput type="text" placeholderText="Custom Input" size="small" />
       <h2>Shared Medium Input Below</h2>
