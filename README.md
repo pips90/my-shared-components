@@ -1,73 +1,227 @@
-# React + TypeScript + Vite
+My Shared UI Component Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight, theme-ready React component library built with TypeScript, Vite, Styled-Components, and Storybook.
 
-Currently, two official plugins are available:
+This project demonstrates how to:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Build reusable UI components
 
-## React Compiler
+Export components through a clean public API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Support light & dark mode using a scalable token system
 
-## Expanding the ESLint configuration
+Use Storybook for component documentation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Ship a library designed to later be consumed inside a monorepo or full application
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+📦 Available Components
+<SharedButton />
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+A reusable button component supporting three sizes:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+size: "small" | "medium" | "large";
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Props:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+interface SharedButtonProps {
+buttonText: string;
+size: "small" | "medium" | "large";
+onClick: () => void;
+}
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Example:
+
+<SharedButton
+buttonText="Click Me!"
+size="medium"
+onClick={() => console.log("clicked")}
+/>
+
+<SharedInput />
+
+A reusable input component supporting three sizes and a standard React change handler.
+
+Props:
+
+interface SharedInputProps {
+type: string;
+placeholderText: string;
+size: "small" | "medium" | "large";
+onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+Example:
+
+<SharedInput
+type="text"
+placeholderText="Email"
+size="large"
+onChange={(e) => console.log(e.target.value)}
+/>
+
+🎨 Theming & Tokens
+
+This library uses a token-based theming system defined in:
+
+src/theme/theme.css
+
+Tokens are implemented using CSS variables, allowing apps to control light/dark mode however they want (local state, system preference, LaunchDarkly, etc.).
+
+Light Mode Tokens (default)
+:root {
+--btn-bg: #ffffff;
+--btn-text: #111827;
+--btn-border: #d1d5db;
+
+--input-bg: #ffffff;
+--input-text: #111827;
+--input-border: #d1d5db;
+}
+
+Dark Mode Tokens
+[data-theme="dark"] {
+--btn-bg: #1f2937;
+--btn-text: #f9fafb;
+--btn-border: #4b5563;
+
+--input-bg: #1f2937;
+--input-text: #f9fafb;
+--input-border: #4b5563;
+}
+
+Why Tokens?
+
+Keeps components clean
+
+Allows centralized theming
+
+Automatically adapts components to dark mode
+
+Easily expanded later (colors, typography, spacing, shadows, variants)
+
+Works with any app’s theme strategy
+
+Does not require LaunchDarkly inside the library
+
+How Consuming Apps Control Theme
+
+Example using React state:
+
+<div data-theme={isDark ? "dark" : "light"}>
+  <SharedButton />
+  <SharedInput />
+</div>
+
+Example using LaunchDarkly in a real app:
+
+const flags = useFlags();
+
+<div data-theme={flags.darkMode ? "dark" : "light"}>
+  <SharedButton />
+</div>
+
+Your shared library automatically responds based on the tokens.
+
+📚 Storybook
+
+Storybook is deployed at:
+
+https://pips90.github.io/my-shared-components/
+
+It includes:
+
+Interactive playgrounds for each component
+
+A11y addon
+
+Vitest/Jest interaction testing
+
+Automated deployment with gh-pages
+
+Run locally:
+
+npm run storybook
+
+Build:
+
+npm run build-storybook
+
+Deploy:
+
+npm run deploy-storybook
+
+🧱 Public API
+
+Library exports are defined in:
+
+src/index.ts
+
+import "./theme/theme.css";
+
+export _ from "./components/SharedButton/SharedButton";
+export _ from "./components/SharedInput/SharedInput";
+
+Consumers import:
+
+import { SharedButton, SharedInput } from "my-shared-components";
+import "my-shared-components/theme.css";
+
+This is the standard pattern used in professional design systems.
+
+🚀 Local Development
+
+Install dependencies:
+
+npm install
+
+Start dev server:
+
+npm run dev
+
+Preview build:
+
+npm run preview
+
+Run tests:
+
+npm test
+
+Lint:
+
+npm run lint
+
+🛠️ Build & Publish
+
+Although this project currently acts as a demo, the structure supports future publishing or monorepo integration.
+
+Future steps (optional):
+
+Add Vite library build (build.lib)
+
+Output dist/ folder with .d.ts files
+
+Publish to npm or use as a pnpm workspace package
+
+📌 Future Enhancements
+
+This shared library is designed to grow.
+Potential future additions include:
+
+More shared components (Card, Modal, Select, Tooltip, Toast, etc.)
+
+Component variants (primary, secondary, outline)
+
+Expanded token system (typography, spacing, radii, shadows)
+
+Semantic tokens (--color-surface, --color-accent)
+
+Support for multiple themes (dark, light, brand themes)
+
+Auto-theme detection based on system settings
+
+Storybook theme switcher
+
+📝 License
+
+MIT
+(Adjust as needed for your use case.)
