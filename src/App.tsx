@@ -35,7 +35,12 @@ function App() {
       <h2>Shared Medium Input Below</h2>
       <SharedInput type="text" placeholderText="Custom Input" size="medium" />
       <h1>Shared Large Input Below</h1>
-      <SharedInput type="text" placeholderText="Custom Input" size="large" />
+      <SharedInput
+        type="text"
+        placeholderText="Custom Input"
+        size="large"
+        onChange={(e) => console.log("Input is changing: ", e.target.value)}
+      />
     </div>
   );
 }

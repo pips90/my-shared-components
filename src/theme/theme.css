@@ -1,0 +1,29 @@
+/* -----------------------
+   Light Mode (Default)
+------------------------ */
+:root {
+  /* Buttons */
+  --btn-bg: #ffffff;
+  --btn-text: #111827;
+  --btn-border: #d1d5db;
+
+  /* Inputs */
+  --input-bg: #ffffff;
+  --input-text: #111827;
+  --input-border: #d1d5db;
+}
+
+/* -----------------------
+   Dark Mode
+------------------------ */
+[data-theme="dark"] {
+  /* Buttons */
+  --btn-bg: #1f2937;
+  --btn-text: #f9fafb;
+  --btn-border: #4b5563;
+
+  /* Inputs */
+  --input-bg: #1f2937;
+  --input-text: #f9fafb;
+  --input-border: #4b5563;
+}

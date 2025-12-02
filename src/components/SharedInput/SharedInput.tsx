@@ -4,16 +4,32 @@ export interface SharedInputProps {
   type: string;
   placeholderText: string;
   size: "small" | "medium" | "large";
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export const SharedInput = ({
   type,
   placeholderText,
   size,
+  onChange,
 }: SharedInputProps) => {
   if (size === "small") {
-    return <SmallInput type={type} placeholder={placeholderText} />;
+    return (
+      <SmallInput
+        type={type}
+        placeholder={placeholderText}
+        onChange={onChange}
+      />
+    );
   } else if (size === "medium") {
-    return <MediumInput type={type} placeholder={placeholderText} />;
+    return (
+      <MediumInput
+        type={type}
+        placeholder={placeholderText}
+        onChange={onChange}
+      />
+    );
   }
-  return <LargeInput type={type} placeholder={placeholderText} />;
+  return (
+    <LargeInput type={type} placeholder={placeholderText} onChange={onChange} />
+  );
 };

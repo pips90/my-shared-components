@@ -49,36 +49,60 @@ export const SmallInput: Story = {
     size: smallInput,
     placeholderText: smallText,
     type: "text",
+    onChange: (e) => console.log("Small input changed: ", e.target.value),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.type(canvas.getByPlaceholderText("Small Input"), "Hello");
-    expect(canvas.getByPlaceholderText("Small Input")).toBeInTheDocument();
+    expect(canvas.getByPlaceholderText("Small Input")).toBeVisible();
+    expect(smallText).toEqual("Small Input");
+    await userEvent.type(
+      canvas.getByPlaceholderText(smallText),
+      "I'm a small input"
+    );
+    expect(canvas.getByPlaceholderText(smallText)).toHaveValue(
+      "I'm a small input"
+    );
   },
 };
 
-export const MediumButton: Story = {
+export const MediumInput: Story = {
   args: {
     size: mediumInput,
     placeholderText: mediumText,
     type: "text",
+    onChange: (e) => console.log("Medium input changed: ", e.target.value),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByText("Medium Button"));
-    expect(smallText).toEqual("Medium Button");
+    expect(canvas.getByPlaceholderText("Medium Input")).toBeVisible();
+    expect(mediumText).toEqual("Medium Input");
+    await userEvent.type(
+      canvas.getByPlaceholderText(mediumText),
+      "I'm a medium input"
+    );
+    expect(canvas.getByPlaceholderText(mediumText)).toHaveValue(
+      "I'm a medium input"
+    );
   },
 };
 
-export const LargeButton: Story = {
+export const LargeInput: Story = {
   args: {
     size: largeInput,
     placeholderText: largeText,
     type: "text",
+    onChange: (e) => console.log("Large input changed: ", e.target.value),
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByText("Large Button"));
-    expect(largeText).toEqual("Large Button");
+    expect(canvas.getByPlaceholderText("Large Input")).toBeVisible();
+    expect(largeText).toEqual("Large Input");
+    await userEvent.type(
+      canvas.getByPlaceholderText(largeText),
+      "I'm a large input"
+    );
+    expect(canvas.getByPlaceholderText(largeText)).toHaveValue(
+      "I'm a large input"
+    );
   },
 };

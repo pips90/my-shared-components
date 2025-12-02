@@ -67,7 +67,7 @@ export const MediumButton: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText("Medium Button"));
-    expect(smallText).toEqual("Medium Button");
+    expect(mediumText).toEqual("Medium Button");
   },
 };
 
@@ -78,6 +78,6 @@ export const LargeButton: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText("Large Button"));
-    expect(smallText).toEqual("Large Button");
+    expect(largeText).toEqual("Large Button");
   },
 };
