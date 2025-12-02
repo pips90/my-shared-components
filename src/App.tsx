@@ -31,9 +31,19 @@ function App() {
         onClick={() => console.log("Large Button haS Been Clicked!")}
       />
       <h3>Shared Small Input Below</h3>
-      <SharedInput type="text" placeholderText="Custom Input" size="small" />
+      <SharedInput
+        type="text"
+        placeholderText="Custom Input"
+        size="small"
+        onChange={(e) => console.log("Input is changing: ", e.target.value)}
+      />
       <h2>Shared Medium Input Below</h2>
-      <SharedInput type="text" placeholderText="Custom Input" size="medium" />
+      <SharedInput
+        type="text"
+        placeholderText="Custom Input"
+        size="medium"
+        onChange={(e) => console.log("Input is changing: ", e.target.value)}
+      />
       <h1>Shared Large Input Below</h1>
       <SharedInput
         type="text"
