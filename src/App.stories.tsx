@@ -23,7 +23,7 @@ const meta: Meta<typeof App> = {
     docs: {
       description: {
         component:
-          "The `App` component demonstrates the usage of the `SharedButton` component. It is the main entry point for this example.",
+          "The `App` component demonstrates the usage of the `SharedButton` and `SharedInput` components. It is the main entry point for this example.",
       },
     },
   },
