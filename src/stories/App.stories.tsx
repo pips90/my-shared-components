@@ -9,7 +9,7 @@ const meta: Meta<typeof App> = {
     (Story) => (
       <div
         style={{
-          width: 400,
+          width: 600,
           margin: "2rem auto",
           border: "1px solid #eee",
           padding: 24,
