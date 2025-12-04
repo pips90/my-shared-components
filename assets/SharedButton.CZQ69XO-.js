@@ -1,4 +1,4 @@
-import{j as r}from"./jsx-runtime.u17CrQMm.js";import{d as n}from"./styled-components.browser.esm.CKmrbC0N.js";const a=n.button`
+import{j as r}from"./jsx-runtime.u17CrQMm.js";import{d as n}from"./styled-components.browser.esm.Dfd2szU4.js";const a=n.button`
   width: 50%;
 `,s=n.button`
   width: 75%;
