@@ -7,6 +7,14 @@ const meta: Meta<typeof SharedButton> = {
   title: "SharedButton component",
   component: SharedButton,
   tags: ["autodocs"],
+  argTypes: {
+    size: {
+      control: { type: "radio" },
+      options: ["small", "medium", "large"],
+    },
+    buttonText: { control: "text" },
+    onClick: { action: "clicked" },
+  },
   decorators: [
     (Story) => (
       <div
@@ -28,7 +36,7 @@ const meta: Meta<typeof SharedButton> = {
     docs: {
       description: {
         component:
-          "The `SharedButton` component demonstrates the usage of the `SharedButton` component with props.",
+          "The `SharedButton` component demonstrates usage with adjustable props.",
       },
     },
   },
@@ -36,48 +44,30 @@ const meta: Meta<typeof SharedButton> = {
 
 export default meta;
 type Story = StoryObj<typeof SharedButton>;
-const smallButton = "small";
-const mediumButton = "medium";
-const largeButton = "large";
 
-const onClick = () => console.log("Button Clicked!");
-
-const smallText = "Small Button";
-const mediumText = "Medium Button";
-const largeText = "Large Button";
 export const SmallButton: Story = {
-  render: () => (
-    <SharedButton size={smallButton} onClick={onClick} buttonText={smallText} />
-  ),
+  args: { size: "small", buttonText: "Small Button" },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText("Small Button"));
-    expect(smallText).toEqual("Small Button");
+    expect(canvas.getByText("Small Button")).toBeVisible();
   },
 };
 
 export const MediumButton: Story = {
-  render: () => (
-    <SharedButton
-      size={mediumButton}
-      onClick={onClick}
-      buttonText={mediumText}
-    />
-  ),
+  args: { size: "medium", buttonText: "Medium Button" },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText("Medium Button"));
-    expect(mediumText).toEqual("Medium Button");
+    expect(canvas.getByText("Medium Button")).toBeVisible();
   },
 };
 
 export const LargeButton: Story = {
-  render: () => (
-    <SharedButton size={largeButton} onClick={onClick} buttonText={largeText} />
-  ),
+  args: { size: "large", buttonText: "Large Button" },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByText("Large Button"));
-    expect(largeText).toEqual("Large Button");
+    expect(canvas.getByText("Large Button")).toBeVisible();
   },
 };
