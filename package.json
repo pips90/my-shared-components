@@ -19,7 +19,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "gh-pages -d storybook-static"
+    "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static -b gh-pages --dotfiles --message \"chore: storybook deploy\""
   },
   "homepage": "https://<pips90>.github.io/my-shared-components",
   "dependencies": {
